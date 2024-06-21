@@ -1,0 +1,86 @@
+---
+env:
+  contexts:
+    - name: "Testweb Context"
+      urls:
+        - "http://35.240.168.125:8080/ui/"
+      includePaths:
+        - "http://35.240.168.125:8080/ui/*"
+      excludePaths: []
+      authentication:
+        method: "form"
+        parameters:
+          loginPageUrl: "http://35.240.168.125:8080/ui/login.jsp"
+          loginRequestUrl: "http://35.240.168.125:8080/ui/doLogin"
+          loginRequestBody: "uid={%username%}&passw={%password%}"
+        verification:
+          method: "response"
+          loggedInRegex: "Sign Off"
+          loggedOutRegex: "Sign In"
+          pollFrequency: 60
+          pollUnits: "requests"
+          pollUrl: ""
+          pollPostData: ""
+      sessionManagement:
+        method: "cookie"
+        parameters: {}
+      technology:
+        exclude: []
+      users:
+        - name: "test_user"
+          credentials:
+            password: "demo1234"
+            username: "jsmith"
+  parameters:
+    failOnError: true
+    failOnWarning: false
+    progressToStdout: true
+  vars: {}
+jobs:
+  - parameters:
+      scanOnlyInScope: true
+      enableTags: false
+    rules: []
+    name: "passiveScan-config"
+    type: "passiveScan-config"
+  - parameters:
+      context: "Testweb Context"
+      user: "test_user"
+      url: ""
+      maxDuration: 0
+      maxDepth: 0
+      maxChildren: 0
+    name: "spider"
+    type: "spider"
+  - parameters:
+      context: "Testweb Context"
+      user: "test_user"
+      url: ""
+      maxDuration: 60
+      maxCrawlDepth: 10
+      numberOfBrowsers: 1
+      runOnlyIfModern: false
+    name: "spiderAjax"
+    type: "spiderAjax"
+  - parameters: {}
+    name: "passiveScan-wait"
+    type: "passiveScan-wait"
+  - parameters:
+      context: "Testweb Context"
+      user: "test_user"
+      policy: ""
+      maxRuleDurationInMins: 0
+      maxScanDurationInMins: 0
+    policyDefinition:
+      defaultStrength: "medium"
+      defaultThreshold: "medium"
+      rules: []
+    name: "activeScan"
+    type: "activeScan"
+  - parameters:
+      template: "risk-confidence-html"
+      reportDir: ""
+      reportTitle: "ZAP Scanning Report"
+      reportDescription: ""
+    name: "report"
+    type: "report"
