@@ -47,5 +47,6 @@ spec:
       - name: dast-home
         persistentVolumeClaim:
          claimName: task-pv-claim
-         
+
+  
   backoffLimit: 4
