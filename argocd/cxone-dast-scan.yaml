@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: checkmarx-dast-scan
+spec:
+  template:
+    spec:
+      containers:
+      - name: dast-scan
+        image: checkmarx/dast:latest
+        env:
+        - name: CX_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: cxone-api-key-secret  # This should be the name of the Kubernetes secret storing your API key
+              key: apikey  # The key within the secret where the API key is stored
+        volumeMounts:
+        - name: dast-home
+          mountPath: "/dast_home"
+        args:
+        - "web"
+        - "--environment-id=7c2a06ba-0639-44b3-bf07-dd0b730cea9f"
+        - "--config=/dast_home/zap_config.yaml"
+        - "--base-url=https://sng.ast.checkmarx.net/"
+        - "--output=/dast_home/test_output"
+        - "--timeout=10000"
+        - "--update-interval=10"
+        - "--jvm-properties=-Xmx3G"
+        - "--log-level=info"
+        - "--verbose"
+        - "--retry=3"
+        - "--retry-delay=20"
+      restartPolicy: Never
+      volumes:
+      - name: dast-home2
+        hostPath:
+          path: "/Users/aaron/Checkmarx/demos/dast/argocd"
+          type: Directory
+          volumes:
+      - name: dast-home
+        gitRepo:
+          # Replace with your Git repository details
+          repo: https://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@github.com/kcommerce/python-flask-server-bitkub
+          dir: config  # Path within the Git repository to mount (www-root in this case)
+  backoffLimit: 4
