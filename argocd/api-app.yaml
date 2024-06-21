@@ -30,7 +30,7 @@ spec:
         app: api-app
     spec:
       containers:
-      - image: sakchart/test-api-server
+      - image: sakchart/test-api-server:1.0
         name: api-app
         ports:
         - containerPort: 8080
