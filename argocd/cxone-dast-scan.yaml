@@ -28,8 +28,8 @@ spec:
         - name: dast-home
           mountPath: "/dast_home"
         args:
-        - "-e CX_APIKEY=$CX_APIKEY"
-        - "-v $(pwd):/dast_home"
+        #- "-e CX_APIKEY=$CX_APIKEY"
+        #- "-v $(pwd):/dast_home"
         - "web"
         - "--environment-id=$CX_WEB_ENV"
         - "--config=/dast_home/zap_config.yaml"
