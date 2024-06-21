@@ -30,7 +30,7 @@ spec:
         app: api-app
     spec:
       containers:
-      - image: fusion-test-api-server
+      - image: sakchart/test-api-server
         name: api-app
         ports:
         - containerPort: 8080
