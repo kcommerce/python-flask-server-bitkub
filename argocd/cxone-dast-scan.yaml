@@ -28,8 +28,9 @@ spec:
         - name: dast-home
           mountPath: "/dast_home"
         args:
-        - "web"
         - "-e CX_APIKEY=$CX_APIKEY"
+        - "-v $(pwd):/dast_home"
+        - "web"
         - "--environment-id=$CX_WEB_ENV"
         - "--config=/dast_home/zap_config.yaml"
         - "--base-url=https://sng.ast.checkmarx.net/"
