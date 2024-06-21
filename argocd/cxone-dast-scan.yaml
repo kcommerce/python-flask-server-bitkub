@@ -45,6 +45,6 @@ spec:
       volumes:
       - name: dast-home
         hostPath:
-          path: "/app"
+          path: "/"
           type: Directory
   backoffLimit: 4
