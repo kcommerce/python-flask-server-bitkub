@@ -44,12 +44,10 @@ spec:
         - "--retry-delay=20"
       restartPolicy: Never
       volumes:
-      - name: dast-home2
+      - name: dast-home
         hostPath:
           path: "/"
           type: Directory
-      - name: dast-home
-        persistentVolumeClaim:
-          claimName: test-pv-claim    
+  
   backoffLimit: 4
   
