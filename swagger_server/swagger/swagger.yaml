@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  title: Bitkub API Test Specification
+  version: 1.0.0
+servers:
+- url: https://api.bitkub.com
+paths:
+  /api/status:
+    get:
+      summary: Get API Status
+      operationId: api_status_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /api/servertime:
+    get:
+      summary: Get Server Time
+      operationId: api_servertime_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /api/market/symbols:
+    get:
+      summary: Get Available Market Symbols
+      operationId: api_market_symbols_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /api/market/ticker:
+    get:
+      summary: Get Market Ticker Information
+      operationId: api_market_ticker_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /api/market/trades:
+    get:
+      summary: Get Recent Market Trades
+      operationId: api_market_trades_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /api/market/bids:
+    get:
+      summary: Get Market Bid Orders
+      operationId: api_market_bids_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /api/market/asks:
+    get:
+      summary: Get Market Ask Orders
+      operationId: api_market_asks_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /api/market/books:
+    get:
+      summary: Get Market Order Book
+      operationId: api_market_books_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /api/market/depth:
+    get:
+      summary: Get Market Order Depth
+      operationId: api_market_depth_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /tradingview/history:
+    get:
+      summary: Get TradingView Historical Data (Deprecated)
+      operationId: tradingview_history_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /api/v3/servertime:
+    get:
+      summary: Get Server Time (v3)
+      operationId: api_v3_servertime_get
+      responses:
+        "200":
+          description: OK
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+components: {}
+
