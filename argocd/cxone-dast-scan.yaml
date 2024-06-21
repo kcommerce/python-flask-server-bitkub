@@ -32,14 +32,10 @@ spec:
         - "--retry-delay=20"
       restartPolicy: Never
       volumes:
-      - name: dast-home2
+      - name: dast-home
         hostPath:
           path: "/Users/aaron/Checkmarx/demos/dast/argocd"
           type: Directory
           volumes:
-      - name: dast-home
-        gitRepo:
-          # Replace with your Git repository details
-          repo: https://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@github.com/kcommerce/python-flask-server-bitkub
-          dir: config  # Path within the Git repository to mount (www-root in this case)
+
   backoffLimit: 4
