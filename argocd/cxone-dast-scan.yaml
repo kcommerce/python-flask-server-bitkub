@@ -45,8 +45,6 @@ spec:
       volumes:
       - name: dast-home
         hostPath:
-          path: "/Users/aaron/Checkmarx/demos/dast/argocd"
+          path: "/app"
           type: Directory
-          volumes:
-
   backoffLimit: 4
