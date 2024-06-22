@@ -56,4 +56,4 @@ spec:
         emptyDir: {}
 
   
-  backoffLimit: 4
+  backoffLimit: 2
