@@ -45,8 +45,7 @@ spec:
       restartPolicy: Never
       volumes:
       - name: dast-home
-        persistentVolumeClaim:
-         claimName: task-pv-claim
+        emptyDir: {}
 
   
   backoffLimit: 4
