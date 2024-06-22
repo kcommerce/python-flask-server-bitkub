@@ -45,8 +45,9 @@ spec:
       restartPolicy: Never
       volumes:
       - name: dast-home
-        persistentVolumeClaim:
-         claimName: my-pvc
+        hostPath:
+          path: "/mnt/data"
+          type: Directory
 
   
   backoffLimit: 2
