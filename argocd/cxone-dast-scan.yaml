@@ -5,6 +5,14 @@ metadata:
 spec:
   template:
     spec:
+      initContainers:
+      - name: download-config
+        image: busybox:latest
+        command: ["sh", "-c"]  # Use shell with command arguments
+        args:
+        - |-  # Multi-line command with proper indentation
+          # Download zap_config.yaml from your GitHub repository (replace with your actual URL)
+          curl https://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@raw.githubusercontent.com/kcommerce/python-flask-server-bitkub/main/config/zap_config.yaml > /dast_home/zap_config.yaml	
       containers:
       - name: dast-scan
         image: checkmarx/dast:latest
