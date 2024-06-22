@@ -31,7 +31,7 @@ spec:
         #- "-e CX_APIKEY=$CX_APIKEY"
         #- "-v $(pwd):/dast_home"
         - "web"
-        - "--environment-id=6e306729-c890-4ce8-8303-5eb17fa3f287"
+        - "--environment-id=7c2a06ba-0639-44b3-bf07-dd0b730cea9f"
         - "--config=/dast_home/zap_config.yaml"
         - "--base-url=https://sng.ast.checkmarx.net/"
         - "--output=/dast_home/test_output"
