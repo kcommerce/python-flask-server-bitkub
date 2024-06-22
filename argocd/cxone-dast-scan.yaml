@@ -11,49 +11,11 @@ spec:
         command: ["sh", "-c"]  # Use shell with command arguments
         args:
         - |-  # Multi-line command with proper indentation
-          # Download zap_config.yaml from your GitHub repository (replace with your actual URL)
-          curl https://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@raw.githubusercontent.com/kcommerce/python-flask-server-bitkub/main/config/zap_config.yaml > /dast_home/zap_config.yaml	
-      containers:
-      - name: dast-scan
-        image: checkmarx/dast:latest
-        env:
-        - name: CX_APIKEY
-          valueFrom:
-            secretKeyRef:
-              name: cxone-config # This should be the name of the Kubernetes secret storing your API key
-              key: apikey  # The key within the secret where the API key is stored
-        - name: CX_WEB_ENV
-          valueFrom:
-            secretKeyRef:
-              name: cxone-config # This should be the name of the Kubernetes secret storing your API key
-              key: web_env_id  # The key within the secret where the API key is stored         
-        - name: CX_API_ENV
-          valueFrom:
-            secretKeyRef:
-              name: cxone-config # This should be the name of the Kubernetes secret storing your API key
-              key: api_env_id  # The key within the secret where the API key is stored                
-        volumeMounts:
-        - name: dast-home
-          mountPath: "/dast_home"
-        args:
-        #- "-e CX_APIKEY=$CX_APIKEY"
-        #- "-v $(pwd):/dast_home"
-        - "web"
-        - "--environment-id=$CX_WEB_ENV"
-        - "--config=/dast_home/zap_config.yaml"
-        - "--base-url=https://sng.ast.checkmarx.net/"
-        - "--output=/dast_home/test_output"
-        - "--timeout=10000"
-        - "--update-interval=10"
-        - "--jvm-properties=-Xmx3G"
-        - "--log-level=info"
-        - "--verbose"
-        - "--retry=3"
-        - "--retry-delay=20"
-      restartPolicy: Never
+          curl -L https://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@raw.githubusercontent.com/kcommerce/python-flask-server-bitkub/main/config/zap_config.yaml > /dast_home/zap_config.yaml
+          # Added command to echo content
+          cat /dast_home/zap_config.yaml
       volumes:
       - name: dast-home
         emptyDir: {}
 
-  
   backoffLimit: 4
